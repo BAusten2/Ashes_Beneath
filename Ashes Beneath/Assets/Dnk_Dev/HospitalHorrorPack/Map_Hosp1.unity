@@ -360,6 +360,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2881934208106077872, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: maxDelay
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881934208106077872, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: minDelay
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881934208106077872, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_EditorClassIdentifier
+      value: Assembly-CSharp::FlickeringLight
+      objectReference: {fileID: 0}
     - target: {fileID: 5532638550297595110, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.16738
@@ -400,9 +412,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: e05a261e12a0eab41b5c2eca28c6aecd, type: 3}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7175825092707016006, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
       propertyPath: m_Type
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175825092707016006, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175825092707016006, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_SpotAngle
+      value: 179
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175825092707016006, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 170.8771
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -420,6 +464,18 @@ PrefabInstance:
     - target: {fileID: 964445317227063386, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
       propertyPath: m_Name
       value: P_Lamp (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881934208106077872, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: maxDelay
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881934208106077872, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: minDelay
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881934208106077872, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_EditorClassIdentifier
+      value: Assembly-CSharp::FlickeringLight
       objectReference: {fileID: 0}
     - target: {fileID: 5532638550297595110, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -461,9 +517,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: e05a261e12a0eab41b5c2eca28c6aecd, type: 3}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7175825092707016006, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
       propertyPath: m_Type
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175825092707016006, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7175825092707016006, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
       propertyPath: m_SpotAngle
@@ -567,6 +647,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2881934208106077872, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: maxDelay
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881934208106077872, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: minDelay
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881934208106077872, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_EditorClassIdentifier
+      value: Assembly-CSharp::FlickeringLight
+      objectReference: {fileID: 0}
     - target: {fileID: 5532638550297595110, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.182
@@ -607,9 +699,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: e05a261e12a0eab41b5c2eca28c6aecd, type: 3}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7175825092707016006, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
       propertyPath: m_Type
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175825092707016006, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -877,6 +993,88 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+--- !u!1 &816150941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 816150944}
+  - component: {fileID: 816150943}
+  - component: {fileID: 816150942}
+  m_Layer: 0
+  m_Name: FlickerTriggerZone (1)
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &816150942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816150941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3068ce27b14fda40beba9f782b5329d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickerTrigger
+  flickerLight: {fileID: 840835624}
+  fasterMinDelay: 0.25
+  fasterMaxDelay: 0.75
+  originalMinDelay: 2.25
+  originalMaxDelay: 2.75
+--- !u!65 &816150943
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816150941}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.1884005, y: 16.281033, z: 1}
+  m_Center: {x: -0.038740613, y: -1.9370927, z: 4.3500037e-11}
+--- !u!4 &816150944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816150941}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7077861, y: -0, z: -0, w: 0.7064269}
+  m_LocalPosition: {x: -15.064, y: 0.141, z: 4.365}
+  m_LocalScale: {x: 1.2690634, y: 0.33487, z: 0.25864244}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: -89.893, y: 0, z: 0}
+--- !u!114 &840835624 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2881934208106077872, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+  m_PrefabInstance: {fileID: 222933237}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1de296e42cc08d46b79b92ccf710624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLight
 --- !u!1001 &847137717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1044,6 +1242,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Lamp (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2881934208106077872, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: maxDelay
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881934208106077872, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: minDelay
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881934208106077872, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_EditorClassIdentifier
+      value: Assembly-CSharp::FlickeringLight
+      objectReference: {fileID: 0}
     - target: {fileID: 5532638550297595110, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.76
@@ -1084,9 +1294,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: e05a261e12a0eab41b5c2eca28c6aecd, type: 3}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7175825092707016006, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
       propertyPath: m_Type
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175825092707016006, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7175825092707016006, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
       propertyPath: m_SpotAngle
@@ -1446,29 +1676,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1156072629}
   - component: {fileID: 1156072628}
-  - component: {fileID: 1156072627}
+  - component: {fileID: 1156072630}
   m_Layer: 0
   m_Name: FlickerTriggerZone
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1156072627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1156072626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3068ce27b14fda40beba9f782b5329d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  flickerLight: {fileID: 2102353557}
-  fasterMinDelay: 0.75
-  fasterMaxDelay: 0.85
 --- !u!65 &1156072628
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1488,8 +1703,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0025314, y: 1, z: 1}
-  m_Center: {x: 0.0012662419, y: 0, z: 0}
+  m_Size: {x: 2.1884005, y: 16.281033, z: 1}
+  m_Center: {x: -0.038740613, y: -1.9370927, z: 4.3500037e-11}
 --- !u!4 &1156072629
 Transform:
   m_ObjectHideFlags: 0
@@ -1498,13 +1713,30 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1156072626}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.066, y: 0.172, z: 2.094}
+  m_LocalRotation: {x: -0.7077861, y: -0, z: -0, w: 0.7064269}
+  m_LocalPosition: {x: -12.066, y: 0.141, z: 4.358}
   m_LocalScale: {x: 1.2690634, y: 0.33487, z: 0.25864244}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.893, y: 0, z: 0}
+--- !u!114 &1156072630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156072626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3068ce27b14fda40beba9f782b5329d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlickerTrigger
+  flickerLight: {fileID: 2102353557}
+  fasterMinDelay: 0.25
+  fasterMaxDelay: 0.75
+  originalMinDelay: 2.25
+  originalMaxDelay: 2.75
 --- !u!1001 &1158308656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1863,6 +2095,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Lamp (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2881934208106077872, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: maxDelay
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881934208106077872, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: minDelay
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881934208106077872, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_EditorClassIdentifier
+      value: Assembly-CSharp::FlickeringLight
+      objectReference: {fileID: 0}
     - target: {fileID: 5532638550297595110, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.359
@@ -1903,9 +2147,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: e05a261e12a0eab41b5c2eca28c6aecd, type: 3}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787610583149299100, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7175825092707016006, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
       propertyPath: m_Type
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175825092707016006, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7175825092707016006, guid: d9da0b1a140a68746b1ac8ed18f14f52, type: 3}
       propertyPath: m_SpotAngle
@@ -2236,7 +2500,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1de296e42cc08d46b79b92ccf710624, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::FlickeringLight
 --- !u!1001 &2124526396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2328,3 +2592,4 @@ SceneRoots:
   - {fileID: 167640338}
   - {fileID: 721594977}
   - {fileID: 1156072629}
+  - {fileID: 816150944}

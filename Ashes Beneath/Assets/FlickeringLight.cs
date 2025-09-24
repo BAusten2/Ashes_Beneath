@@ -1,17 +1,25 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Light))]
+[RequireComponent(typeof(AudioSource))]
 public class FlickeringLight : MonoBehaviour
 {
     private Light lightSource;
-    public float minDelay = 0.05f;
-    public float maxDelay = 0.25f;
+    private AudioSource audioSource;
+
+    public float minDelay = 2.25f;
+    public float maxDelay = 2.75f;
 
     private Coroutine flickerRoutine;
 
     void Start()
     {
         lightSource = GetComponent<Light>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.loop = false;         // Play only once per flicker
+        audioSource.playOnAwake = false;  // You control when it plays
+
         flickerRoutine = StartCoroutine(Flicker());
     }
 
@@ -19,7 +27,14 @@ public class FlickeringLight : MonoBehaviour
     {
         while (true)
         {
-            lightSource.enabled = !lightSource.enabled;
+            bool isOn = !lightSource.enabled;
+            lightSource.enabled = isOn;
+
+            if (isOn && audioSource != null)
+            {
+                audioSource.Play(); // Play buzz when light turns ON
+            }
+
             yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
         }
     }
