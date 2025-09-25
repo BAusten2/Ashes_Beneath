@@ -4026,9 +4026,9 @@ MonoBehaviour:
   fovAngle: 120
   eyeHeight: 1.7
   targetHeight: 1.6
-  newWanderPointEvery: 4
+  newWanderPointEvery: 10
   hideForgetSeconds: 5
-  screamCooldown: 2
+  screamCooldown: 20
   state: 0
 --- !u!195 &7787153384609675357
 NavMeshAgent:
