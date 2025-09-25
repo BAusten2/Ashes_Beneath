@@ -31,7 +31,7 @@ public class AntagonistAI : MonoBehaviour
     [Header("Timers")]
     public float newWanderPointEvery = 4f;
     public float hideForgetSeconds = 5f;
-    public float screamCooldown = 2f;
+    public float screamCooldown = 200f;
 
     // runtime
     public State state = State.Wandering;
@@ -140,7 +140,7 @@ public class AntagonistAI : MonoBehaviour
 
                 if (Vector3.Distance(transform.position, trackedLocker.transform.position) < 1.6f)
                 {
-                    trackedLocker.Attack(); // TODO: game-over/damage
+                    trackedLocker.Attack(); 
                     SetState(State.Wandering);
                 }
             }
@@ -175,7 +175,7 @@ public class AntagonistAI : MonoBehaviour
             if (animator && !_hasScreamedThisHunt)
             {
                 animator.ResetTrigger("Scream");
-                animator.SetTrigger("Scream");   // AnyState -> Scream
+                animator.SetTrigger("Scream");
                 _hasScreamedThisHunt = true;
             }
         }
