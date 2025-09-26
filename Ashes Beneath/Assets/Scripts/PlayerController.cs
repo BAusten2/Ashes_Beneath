@@ -1,40 +1,45 @@
+// Import libraries
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    // Player Dependencies
     [Header("Refs")]
     public CharacterController controller;
-    public Transform cameraPivot;            // your Camera transform
-    public LayerMask interactableMask;       // set to "Interactable" layer (Lockers/Doors)
-    public LayerMask losBlockers;            // same mask you use on AntagonistAI
-    public AntagonistAI[] enemies;           // leave empty to auto-find
+    public Transform cameraPivot;
+    public LayerMask interactableMask;
+    public LayerMask losBlockers;         
+    public AntagonistAI[] enemies;           
 
+    // Player Control (Using Unity Prebuilt Movement Packs)
     [Header("Input (Input System)")]
-    public InputActionReference move;        // Vector2
-    public InputActionReference look;        // Vector2 (Pointer delta)
-    public InputActionReference jump;        // Button
-    public InputActionReference sprint;      // Button (held)
-    public InputActionReference interact;    // Button (press)
+    public InputActionReference move;
+    public InputActionReference look; 
+    public InputActionReference jump; 
+    public InputActionReference sprint;
+    public InputActionReference interact;   
 
+    //Player Speed/Physics
     [Header("Movement")]
     public float walkSpeed = 4.5f;
-    public float sprintSpeed = 7.0f;         // keep slightly above huntSpeed
+    public float sprintSpeed = 7.0f;         
     public float gravity = -9.81f;
     public float jumpHeight = 1.1f;
     public float mouseSensitivity = 0.15f;
     public float interactDistance = 2.2f;
 
+    // Footsteps/Audio System !DEPRECIATED!
     [Header("Footsteps")]
     public AudioSource footstepSource;
-    public AudioClip[] footstepClips;        // drop a few clips here
-    public float stepIntervalWalk = 0.48f;   // seconds between steps while walking
-    public float stepIntervalSprint = 0.36f; // seconds between steps while sprinting
-    [Range(0f, 1f)] public float footstepLoudnessWalk = 0.45f; // for AI NotifyNoise
+    public AudioClip[] footstepClips;       
+    public float stepIntervalWalk = 0.48f; 
+    public float stepIntervalSprint = 0.36f;
+    [Range(0f, 1f)] public float footstepLoudnessWalk = 0.45f;
     [Range(0f, 1f)] public float footstepLoudnessSprint = 0.9f;
 
-    // runtime
+    // Runtime
     Vector3 velocity;
     float pitch;
     float stepTimer;
@@ -48,6 +53,7 @@ public class PlayerController : MonoBehaviour
         if (Camera.main) cameraPivot = Camera.main.transform;
     }
 
+    // Auto IDs Character Controler and Antagonist. Focuses mouse.
     void Awake()
     {
         if (controller == null) controller = GetComponent<CharacterController>();
@@ -56,12 +62,15 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
     }
 
+    // On GameStart: Enable Action/Input Reference
     void OnEnable()
     {
         move?.action.Enable(); look?.action.Enable();
         jump?.action.Enable(); sprint?.action.Enable();
         interact?.action.Enable();
     }
+
+    // On GameStop: Diaable Action/Input Reference
     void OnDisable()
     {
         move?.action.Disable(); look?.action.Disable();
@@ -69,17 +78,18 @@ public class PlayerController : MonoBehaviour
         interact?.action.Disable();
     }
 
+    // Standard update called every frame (tick?)
     void Update()
     {
         if (isHidden)
         {
-            // only allow exit
+            // Exit locker
             if (interact != null && interact.action.WasPressedThisFrame())
                 TryExitLocker();
             return;
         }
 
-        // ===== Look =====
+        // Look
         if (look != null && cameraPivot)
         {
             Vector2 d = look.action.ReadValue<Vector2>() * mouseSensitivity;
@@ -88,7 +98,7 @@ public class PlayerController : MonoBehaviour
             cameraPivot.localEulerAngles = new Vector3(pitch, 0f, 0f);
         }
 
-        // ===== Move =====
+        // Move
         grounded = controller.isGrounded;
         if (grounded && velocity.y < 0) velocity.y = -2f;
 
@@ -108,7 +118,7 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        // ===== Footsteps =====
+        // Footsteps !DEPRECIATED!
         float horizVel = new Vector3(controller.velocity.x, 0f, controller.velocity.z).magnitude;
         bool moving = horizVel > 0.2f && grounded;
         float stepInterval = wantsSprint ? stepIntervalSprint : stepIntervalWalk;
@@ -123,11 +133,12 @@ public class PlayerController : MonoBehaviour
         }
         else stepTimer = 0f;
 
-        // ===== Interact (lockers/doors) =====
+        // Interact (lockers/doors) !DEPRECIATED!
         if (interact != null && interact.action.WasPressedThisFrame())
             TryInteract();
     }
 
+    // Audio Manager for Footsteps !DEPRECIATED!
     void PlayFootstep(bool sprinting)
     {
         if (footstepSource && footstepClips != null && footstepClips.Length > 0)
@@ -136,7 +147,7 @@ public class PlayerController : MonoBehaviour
             footstepSource.pitch = Random.Range(0.96f, 1.04f);
             footstepSource.PlayOneShot(clip);
         }
-        // tell nearby enemies
+        // Volume Metric for Footsteps !DEPRECIATED!
         float loudness = sprinting ? footstepLoudnessSprint : footstepLoudnessWalk;
         foreach (var ai in enemies)
         {
@@ -145,6 +156,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Determine Antagonist LoS when entering locker !DEPRECIATED!
     void TryInteract()
     {
         if (!cameraPivot) return;
@@ -154,7 +166,7 @@ public class PlayerController : MonoBehaviour
             var locker = hit.collider.GetComponentInParent<Locker>();
             if (locker != null)
             {
-                // decide if any enemy has LoS right now
+                // Determine LoS
                 bool anyLoS = false;
                 foreach (var ai in enemies)
                 {
@@ -174,10 +186,9 @@ public class PlayerController : MonoBehaviour
                 }
                 return;
             }
-
-            // You can add Door interaction here later
         }
     }
+
 
     void TryExitLocker()
     {
@@ -193,17 +204,17 @@ public class PlayerController : MonoBehaviour
             currentLocker = null;
         }
     }
-
+    
+    // Determine whether Antgonist has LoS on Player
     bool HasEnemyLineOfSight(Transform enemy)
     {
-        // replicate AI LoS: ray from enemy head to player head
         Vector3 origin = enemy.position + Vector3.up * 1.7f;
         Vector3 target = cameraPivot ? cameraPivot.position : transform.position + Vector3.up * 1.6f;
         Vector3 dir = target - origin;
         if (Physics.Raycast(origin, dir.normalized, out RaycastHit hit, dir.magnitude, ~0, QueryTriggerInteraction.Ignore))
         {
             if (hit.transform == transform) return true;
-            // blocked if the first hit is on a los-blocking layer
+            // Blocked if the first hit is on a los-blocking layer
             return false;
         }
         return true;

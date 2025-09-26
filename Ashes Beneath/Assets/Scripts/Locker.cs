@@ -1,10 +1,11 @@
+// Import Libraries
 using UnityEngine;
 
 public class Locker : MonoBehaviour
 {
-    // Where the player snaps to when hiding (optional)
+    // Where the player snaps to when hiding
     public Transform entryPoint;
-    // Where the enemy stands to attack (optional)
+    // Where the enemy stands to attack
     public Transform attackPoint;
 
     private PlayerController occupant;
@@ -14,13 +15,13 @@ public class Locker : MonoBehaviour
         if (occupant != null) return false;
         occupant = p;
 
-        // snap player into locker
+        // Snap player into locker
         if (entryPoint)
         {
             p.transform.SetPositionAndRotation(entryPoint.position, entryPoint.rotation);
         }
 
-        // disable movement while hidden
+        // Disable movement while hidden
         var cc = p.GetComponent<CharacterController>();
         if (cc) cc.enabled = false;
 
@@ -38,9 +39,9 @@ public class Locker : MonoBehaviour
         return true;
     }
 
-    // Called by AntagonistAI when it reaches the locker after seeing the player enter
+    // Called by Antagonist when it reaches the locker (On LoS) !DEPRECIATED!
     public void Attack()
     {
-        Debug.Log("Locker attacked! TODO: kill player / apply damage / game over.");
+        Debug.Log("Locker TODO: damage / game over.");
     }
 }

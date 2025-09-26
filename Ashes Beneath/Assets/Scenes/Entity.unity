@@ -927,7 +927,7 @@ MonoBehaviour:
   sprint: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   interact: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   walkSpeed: 4.5
-  sprintSpeed: 7
+  sprintSpeed: 15
   gravity: -9.81
   jumpHeight: 1.1
   mouseSensitivity: 0.15
@@ -3891,6 +3891,7 @@ GameObject:
   - component: {fileID: 7787153384609675355}
   - component: {fileID: 7787153384609675356}
   - component: {fileID: 7787153384609675357}
+  - component: {fileID: 7787153384609675358}
   m_Layer: 0
   m_Name: Antagonist
   m_TagString: Untagged
@@ -3910,7 +3911,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: fcd92f666a13f144b9ba1f4090d7b89b, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -3955,7 +3956,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4015,13 +4016,13 @@ MonoBehaviour:
   animator: {fileID: 3583311448021825690}
   screamSource: {fileID: 7787153384609675355}
   screamClip: {fileID: 8300000, guid: fcd92f666a13f144b9ba1f4090d7b89b, type: 3}
-  wanderRadius: 20
-  trackingRadius: 18
-  trackingHysteresis: 2
-  hearingRadius: 25
+  wanderRadius: 100
+  trackingRadius: 30
+  trackingHysteresis: 3
+  hearingRadius: 30
   wanderSpeed: 2
-  trackSpeed: 2.5
-  huntSpeed: 4.6
+  trackSpeed: 5
+  huntSpeed: 14
   useFOV: 0
   fovAngle: 120
   eyeHeight: 1.7
@@ -4029,6 +4030,7 @@ MonoBehaviour:
   newWanderPointEvery: 10
   hideForgetSeconds: 5
   screamCooldown: 20
+  minHuntLock: 1
   state: 0
 --- !u!195 &7787153384609675357
 NavMeshAgent:
@@ -4052,6 +4054,29 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &7787153384609675358
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7787153384609675354}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &7830057084763748364
 Transform:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ public class AntagonistAI : MonoBehaviour
 {
     public enum State { Wandering, Tracking, Hunting }
 
+    // Determine Antagonist Physics / Functions
     [Header("Refs")]
     public Transform player;
     public NavMeshAgent agent;
@@ -13,6 +14,7 @@ public class AntagonistAI : MonoBehaviour
     public AudioSource screamSource;
     public AudioClip screamClip;
 
+    //Determine Antagonist Speed / Detection Proximities
     [Header("Radii / Speeds")]
     public float wanderRadius = 20f;
     public float trackingRadius = 18f;
@@ -22,18 +24,26 @@ public class AntagonistAI : MonoBehaviour
     public float trackSpeed = 2.5f;
     public float huntSpeed = 4.6f;
 
+    // Optional FOV Detection !DEPRECIATED!
     [Header("Vision")]
     public bool useFOV = false;
     [Range(1f, 360f)] public float fovAngle = 120f;
     public float eyeHeight = 1.7f;
     public float targetHeight = 1.6f;
 
+    // Determine Antagonist Behaviour
     [Header("Timers")]
     public float newWanderPointEvery = 4f;
     public float hideForgetSeconds = 5f;
     public float screamCooldown = 200f;
 
-    // runtime
+    // Determine Perisitent States (Hunting / Screaming)
+    [Header("State Locks")]
+    public float minHuntLock = 1.0f; 
+    float _huntLockedUntil = 0f;
+    bool _playedScreamAudioThisHunt = false;
+
+    // Initial Runtime State
     public State state = State.Wandering;
     Vector3 lastKnownPlayerPos;
     float nextWanderPickAt;
@@ -43,7 +53,7 @@ public class AntagonistAI : MonoBehaviour
     Locker trackedLocker = null;
     bool _hasScreamedThisHunt = false;
 
-    // player-hidden status
+    // Determine whether player is hidden from Antagonist
     public bool PlayerIsHidden { get; private set; }
     public Locker PlayerLocker { get; private set; }
 
@@ -53,11 +63,12 @@ public class AntagonistAI : MonoBehaviour
         if (!player && Camera.main) player = Camera.main.transform;
     }
 
+    //Standard Update
     void Update()
     {
         if (!agent || !player) return;
 
-        // global escalation
+        // State Swaps
         if (HasLineOfSight()) SetState(State.Hunting);
 
         switch (state)
@@ -74,7 +85,7 @@ public class AntagonistAI : MonoBehaviour
         }
     }
 
-    // ---- states ----
+    // Wandering State: Random Destinations within Wander Radius
     void TickWandering()
     {
         agent.speed = wanderSpeed;
@@ -89,6 +100,23 @@ public class AntagonistAI : MonoBehaviour
             SetState(State.Tracking);
     }
 
+    // Scream State: Temporary State for when Player is Targeted
+    bool InScreamPhase()
+    {
+        if (!animator) return false;
+        var st = animator.GetCurrentAnimatorStateInfo(0);
+        return st.IsName("Scream") || st.IsName("ScreamToHunt");
+    }
+
+    // Ensures scream audio and animation are only played once
+    void PlayScreamOnce()
+    {
+        if (_playedScreamAudioThisHunt) return;
+        if (screamSource && screamClip) screamSource.PlayOneShot(screamClip);
+        _playedScreamAudioThisHunt = true;
+    }
+
+    // Tracking State: Slow Progress Towards Player
     void TickTracking()
     {
         agent.speed = trackSpeed;
@@ -110,11 +138,12 @@ public class AntagonistAI : MonoBehaviour
             SetState(State.Wandering);
     }
 
+    // Hunting State: LOS with Player. Sprinting
     void TickHunting()
     {
         agent.speed = huntSpeed;
 
-        if (Time.time - lastScreamAt > screamCooldown)
+        if (Time.time - lastScreamAt > screamCooldown) // Cooldown to prevent constant screaming !BROKEN!
         {
             if (screamSource && screamClip) screamSource.PlayOneShot(screamClip);
             lastScreamAt = Time.time;
@@ -130,6 +159,7 @@ public class AntagonistAI : MonoBehaviour
             agent.SetDestination(lastKnownPlayerPos);
         }
 
+        // Determines if Player is hidden (Attacks if enter locker on LoS !BROKEN!)
         if (PlayerIsHidden)
         {
             if (sawPlayerEnterLocker && trackedLocker)
@@ -148,7 +178,7 @@ public class AntagonistAI : MonoBehaviour
             {
                 if (hiddenSince < 0f) hiddenSince = Time.time;
                 if (Time.time - hiddenSince >= hideForgetSeconds)
-                    SetState(State.Wandering);
+                    SetState(State.Wandering);      // Player evaded capture
             }
         }
         else
@@ -159,9 +189,10 @@ public class AntagonistAI : MonoBehaviour
         }
 
         if (DistanceToPlayer() > trackingRadius + trackingHysteresis)
-            SetState(State.Wandering);
+            SetState(State.Wandering); // Player leaves antagonist proximity (Evaded Capture)
     }
 
+    // Sets Hunting. Keeps Antagonist attracted to Player
     void SetState(State s)
     {
         if (state == s) return;
@@ -172,29 +203,30 @@ public class AntagonistAI : MonoBehaviour
         {
             lastKnownPlayerPos = player.position;
 
-            if (animator && !_hasScreamedThisHunt)
+            if (animator && !_hasScreamedThisHunt)      // Screams if have not this hunt
             {
                 animator.ResetTrigger("Scream");
-                animator.SetTrigger("Scream");
+                animator.SetTrigger("Scream");   
+                PlayScreamOnce();                
                 _hasScreamedThisHunt = true;
+                _huntLockedUntil = Time.time + minHuntLock;
             }
         }
         else
         {
             _hasScreamedThisHunt = false;
+            _playedScreamAudioThisHunt = false;
         }
 
         if (state == State.Wandering)
         {
-            hiddenSince = -1f;
-            sawPlayerEnterLocker = false;
-            trackedLocker = null;
-            nextWanderPickAt = 0f;
+            hiddenSince = -1f; sawPlayerEnterLocker = false; trackedLocker = null; nextWanderPickAt = 0f;       // Evaded Capture
         }
     }
 
-    // ---- events from other systems ----
-    public void NotifyNoise(Vector3 pos, float loudness) // 0..1
+
+   // Determines if Playerfootsteps are heard based on Audio Proximity !DEPRECIATED!
+    public void NotifyNoise(Vector3 pos, float loudness)
     {
         float d = Vector3.Distance(transform.position, pos);
         if (d > hearingRadius) return;
@@ -207,6 +239,7 @@ public class AntagonistAI : MonoBehaviour
         }
     }
 
+    // Event Listener for locker entry !DEPRECIATED!
     public void NotifyPlayerEnteredLocker(Locker locker, bool hadLoS)
     {
         PlayerIsHidden = true;
@@ -220,6 +253,7 @@ public class AntagonistAI : MonoBehaviour
         hiddenSince = -1f;
     }
 
+    // Event Listener for locker exit !DEPRECIATED!
     public void NotifyPlayerExitedLocker()
     {
         PlayerIsHidden = false;
@@ -229,7 +263,7 @@ public class AntagonistAI : MonoBehaviour
         hiddenSince = -1f;
     }
 
-    // ---- helpers ----
+    // Determines LoS (Line of Sight) Perameters
     bool HasLineOfSight()
     {
         Vector3 origin = transform.position + Vector3.up * eyeHeight;
@@ -248,12 +282,13 @@ public class AntagonistAI : MonoBehaviour
         if (Physics.Raycast(origin, dir.normalized, out RaycastHit hit, dist, mask, QueryTriggerInteraction.Ignore))
             return hit.transform == player;
 
-        return true; // nothing hit
+        return true; // No hit
     }
 
     bool Reached(Vector3 p) => !agent.pathPending && agent.remainingDistance <= Mathf.Max(0.2f, agent.stoppingDistance);
     float DistanceToPlayer() => Vector3.Distance(transform.position, player.position);
 
+    // Moves "center" around NavMesh randomly for Wander State
     static Vector3 RandomPointOnNavmesh(Vector3 center, float radius)
     {
         for (int i = 0; i < 10; i++)
@@ -265,6 +300,7 @@ public class AntagonistAI : MonoBehaviour
         return center;
     }
 
+    // Draw Radii to screen
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan; Gizmos.DrawWireSphere(transform.position, wanderRadius);
