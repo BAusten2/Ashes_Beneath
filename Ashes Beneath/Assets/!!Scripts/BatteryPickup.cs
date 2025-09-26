@@ -5,6 +5,7 @@ using System.Collections;
 public class BatteryPickup : MonoBehaviour {
 	private Transform myTransform;	
 	private bool isLookingAtItem = false;
+	private GameObject player; // Added missing player variable declaration
 	
 	public bool EnableMessageMax = true;
 	public bool Enabled;
@@ -31,9 +32,10 @@ public class BatteryPickup : MonoBehaviour {
 	void Start () {
 		myTransform = transform;//manually set transform for efficiency
 		
-		// Hide interaction prompt at start
-		if (InteractionPrompt != null) {
-			InteractionPrompt.SetActive(false);
+		// Find player reference
+		if (player == null) {
+			player = GameObject.FindGameObjectWithTag("Player");
+			// Remove PlayerController reference since it doesn't exist in your project
 		}
 	}
 	
@@ -52,9 +54,9 @@ public class BatteryPickup : MonoBehaviour {
 		Camera playerCamera = Camera.main;
 		if (playerCamera == null) {
 			// Try to find camera in FirstPersonController
-			GameObject player = GameObject.FindGameObjectWithTag("Player");
-			if (player != null) {
-				playerCamera = player.GetComponentInChildren<Camera>();
+			GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+			if (playerObj != null) {
+				playerCamera = playerObj.GetComponentInChildren<Camera>();
 			}
 		}
 		
@@ -103,9 +105,13 @@ public class BatteryPickup : MonoBehaviour {
 		}
 	}
 	 
-	public void UseObject (){
-		GameObject BatteryUIScript = GameObject.Find("Flashlight");
-		BatteryUI BatteryComponent = BatteryUIScript.GetComponent<BatteryUI>();
+	public void UseObject() {
+		// Try to find BatteryUI component anywhere in the scene
+		BatteryUI BatteryComponent = FindObjectOfType<BatteryUI>();
+		if (BatteryComponent == null) {
+			Debug.LogError("Could not find BatteryUI component anywhere in the scene! Make sure you have a BatteryUI script attached to a GameObject.");
+			return;
+		}
 		
 		// Hide interaction prompt
 		HideInteractionPrompt();
