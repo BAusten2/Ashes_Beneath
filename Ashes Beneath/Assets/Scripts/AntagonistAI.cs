@@ -39,7 +39,7 @@ public class AntagonistAI : MonoBehaviour
 
     // Determine Perisitent States (Hunting / Screaming)
     [Header("State Locks")]
-    public float minHuntLock = 1.0f; 
+    public float minHuntLock = 1.0f;
     float _huntLockedUntil = 0f;
     bool _playedScreamAudioThisHunt = false;
 
@@ -73,9 +73,15 @@ public class AntagonistAI : MonoBehaviour
 
         switch (state)
         {
-            case State.Wandering: TickWandering(); break;
-            case State.Tracking: TickTracking(); break;
-            case State.Hunting: TickHunting(); break;
+            case State.Wandering:
+                TickWandering();
+                break;
+            case State.Tracking:
+                TickTracking();
+                break;
+            case State.Hunting:
+                TickHunting();
+                break;
         }
 
         if (animator)
@@ -106,6 +112,9 @@ public class AntagonistAI : MonoBehaviour
         if (!animator) return false;
         var st = animator.GetCurrentAnimatorStateInfo(0);
         return st.IsName("Scream") || st.IsName("ScreamToHunt");
+        wanderSpeed = 0;
+        trackSpeed = 0;
+        huntSpeed = 0;
     }
 
     // Ensures scream audio and animation are only played once
@@ -121,7 +130,8 @@ public class AntagonistAI : MonoBehaviour
     {
         agent.speed = trackSpeed;
 
-        Vector3 jitter = Random.insideUnitSphere * 2f; jitter.y = 0f;
+        Vector3 jitter = Random.insideUnitSphere * 2f;
+        jitter.y = 0f;
         Vector3 target = player.position + jitter;
         agent.SetDestination(target);
         lastKnownPlayerPos = player.position;
@@ -170,7 +180,7 @@ public class AntagonistAI : MonoBehaviour
 
                 if (Vector3.Distance(transform.position, trackedLocker.transform.position) < 1.6f)
                 {
-                    trackedLocker.Attack(); 
+                    trackedLocker.Attack();
                     SetState(State.Wandering);
                 }
             }
@@ -178,7 +188,7 @@ public class AntagonistAI : MonoBehaviour
             {
                 if (hiddenSince < 0f) hiddenSince = Time.time;
                 if (Time.time - hiddenSince >= hideForgetSeconds)
-                    SetState(State.Wandering);      // Player evaded capture
+                    SetState(State.Wandering); // Player evaded capture
             }
         }
         else
@@ -203,11 +213,11 @@ public class AntagonistAI : MonoBehaviour
         {
             lastKnownPlayerPos = player.position;
 
-            if (animator && !_hasScreamedThisHunt)      // Screams if have not this hunt
+            if (animator && !_hasScreamedThisHunt) // Screams if have not this hunt
             {
                 animator.ResetTrigger("Scream");
-                animator.SetTrigger("Scream");   
-                PlayScreamOnce();                
+                animator.SetTrigger("Scream");
+                PlayScreamOnce();
                 _hasScreamedThisHunt = true;
                 _huntLockedUntil = Time.time + minHuntLock;
             }
@@ -220,12 +230,14 @@ public class AntagonistAI : MonoBehaviour
 
         if (state == State.Wandering)
         {
-            hiddenSince = -1f; sawPlayerEnterLocker = false; trackedLocker = null; nextWanderPickAt = 0f;       // Evaded Capture
+            hiddenSince = -1f;
+            sawPlayerEnterLocker = false;
+            trackedLocker = null;
+            nextWanderPickAt = 0f; // Evaded Capture
         }
     }
 
-
-   // Determines if Playerfootsteps are heard based on Audio Proximity !DEPRECIATED!
+    // Determines if Playerfootsteps are heard based on Audio Proximity !DEPRECIATED!
     public void NotifyNoise(Vector3 pos, float loudness)
     {
         float d = Vector3.Distance(transform.position, pos);
@@ -244,12 +256,14 @@ public class AntagonistAI : MonoBehaviour
     {
         PlayerIsHidden = true;
         PlayerLocker = locker;
+
         if (hadLoS)
         {
             sawPlayerEnterLocker = true;
             trackedLocker = locker;
             SetState(State.Hunting);
         }
+
         hiddenSince = -1f;
     }
 
@@ -285,26 +299,35 @@ public class AntagonistAI : MonoBehaviour
         return true; // No hit
     }
 
-    bool Reached(Vector3 p) => !agent.pathPending && agent.remainingDistance <= Mathf.Max(0.2f, agent.stoppingDistance);
-    float DistanceToPlayer() => Vector3.Distance(transform.position, player.position);
+    bool Reached(Vector3 p) =>
+        !agent.pathPending && agent.remainingDistance <= Mathf.Max(0.2f, agent.stoppingDistance);
+
+    float DistanceToPlayer() =>
+        Vector3.Distance(transform.position, player.position);
 
     // Moves "center" around NavMesh randomly for Wander State
     static Vector3 RandomPointOnNavmesh(Vector3 center, float radius)
     {
         for (int i = 0; i < 10; i++)
         {
-            Vector3 candidate = center + Random.insideUnitSphere * radius; candidate.y = center.y;
+            Vector3 candidate = center + Random.insideUnitSphere * radius;
+            candidate.y = center.y;
+
             if (NavMesh.SamplePosition(candidate, out NavMeshHit hit, 3f, NavMesh.AllAreas))
                 return hit.position;
         }
+
         return center;
     }
 
     // Draw Radii to screen
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.cyan; Gizmos.DrawWireSphere(transform.position, wanderRadius);
-        Gizmos.color = Color.yellow; Gizmos.DrawWireSphere(transform.position, trackingRadius);
-        Gizmos.color = Color.red; Gizmos.DrawWireSphere(transform.position, hearingRadius);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, wanderRadius);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, trackingRadius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, hearingRadius);
     }
 }
