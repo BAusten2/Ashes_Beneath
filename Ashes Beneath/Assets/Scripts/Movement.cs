@@ -76,6 +76,8 @@ public class SimpleFirstPersonController : MonoBehaviour
         {
             Debug.Log("L was pressed using Keyboard API");
             SaveManager.SavePlayer(transform.position);
+
+            FindObjectOfType<SavingFeedback>()?.ShowSavingIcon();
         }
     }
 
