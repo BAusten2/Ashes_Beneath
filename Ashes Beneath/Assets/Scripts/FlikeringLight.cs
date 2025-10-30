@@ -18,9 +18,14 @@ public class FlickeringLight : MonoBehaviour
         lightSource = GetComponent<Light>();
         audioSource = GetComponent<AudioSource>();
         audioSource.loop = false;        
-        audioSource.playOnAwake = false; 
+        audioSource.playOnAwake = false;
 
         flickerRoutine = StartCoroutine(Flicker());
+        
+        AudioSource flickerSound = GetComponent<AudioSource>();
+        flickerSound.spatialBlend = 1f; // 3D sound
+        flickerSound.minDistance = 1f;
+        flickerSound.maxDistance = 5f;
     }
 
     IEnumerator Flicker()

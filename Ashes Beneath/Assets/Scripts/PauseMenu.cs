@@ -3,10 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public SavingFeedback savingFeedback;
     public GameObject pauseMenuUI;
     public Transform playerTransform;
     public static bool GameIsPaused = false;
-
     private bool isPaused = false;
 
     void Update()
@@ -48,6 +48,8 @@ public class PauseMenu : MonoBehaviour
         {
             SaveManager.SavePlayer(playerTransform.position);
             Debug.Log("Game Saved");
+
+            FindObjectOfType<SavingFeedback>()?.ShowSavingIcon();
         }
         else
         {
