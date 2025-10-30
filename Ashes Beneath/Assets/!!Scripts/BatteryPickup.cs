@@ -129,6 +129,14 @@ public class BatteryPickup : MonoBehaviour {
 			if(PickupMessage && MessageLabel != null){StartCoroutine(SendMessage());}
 			BatteryComponent.Batteries += BatteryAdd;
 			if(pickupSound){AudioSource.PlayClipAtPoint(pickupSound, myTransform.position, 0.75f);}
+			
+			// Register this battery as collected for save system
+			CollectibleID idComponent = GetComponent<CollectibleID>();
+			if (idComponent != null && !string.IsNullOrEmpty(idComponent.uniqueID))
+			{
+				SaveManager.RegisterCollectedBattery(idComponent.uniqueID);
+			}
+			
 			this.GetComponent<Renderer>().enabled = false;
 			this.GetComponent<Collider>().enabled = false;
 		}
