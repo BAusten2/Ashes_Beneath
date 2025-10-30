@@ -1,3 +1,5 @@
+//Jasmit Gosal 21137879
+
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
@@ -6,6 +8,7 @@ public class GammaController : MonoBehaviour
 {
     public Slider gammaSlider;
 
+    //set gamma value
     public void SetGamma(float value)
     {
         RenderSettings.ambientIntensity = value;

@@ -1,3 +1,5 @@
+//Jasmit Gosal 21137879
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
     private bool isPaused = false;
 
+    //pause if esc is pressed
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -20,6 +23,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    //resume game + resume time
     public void ResumeGame()
     {
         pauseMenuUI.SetActive(false);
@@ -31,6 +35,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
     }
 
+    //pasue game + freeze time
     void PauseGame()
     {
         pauseMenuUI.SetActive(true);
@@ -49,6 +54,7 @@ public class PauseMenu : MonoBehaviour
             SaveManager.SavePlayer(playerTransform.position);
             Debug.Log("Game Saved");
 
+            //show saving icon
             FindObjectOfType<SavingFeedback>()?.ShowSavingIcon();
         }
         else
@@ -57,6 +63,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    //exit to main menu
     public void ExitToMainMenu()
     {
         Time.timeScale = 1f;

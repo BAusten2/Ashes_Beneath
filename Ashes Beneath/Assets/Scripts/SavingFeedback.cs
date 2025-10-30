@@ -1,3 +1,5 @@
+//Jasmit Gosal 21137879
+
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
@@ -14,11 +16,12 @@ public class SavingFeedback : MonoBehaviour
             StartCoroutine(DisplaySaving());
     }
 
+    //display saving icon and text
     private IEnumerator DisplaySaving()
     {
         if (savingIcon != null) savingIcon.SetActive(true);
         if (savingText != null) savingText.SetActive(true);
-        
+
 
         yield return new WaitForSecondsRealtime(displayTime);
 

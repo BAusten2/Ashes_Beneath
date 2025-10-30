@@ -1,17 +1,22 @@
+//Jasmit Gosal 21137879
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-public void NewGame()
-{
-    Time.timeScale = 1f;
-    SaveManager.DeleteSave();
-    PlayerPrefs.SetInt("ShouldLoadSave", 0);
-    SceneManager.LoadScene("Environment FINAL");
-}
 
 
+    //load new game + activate time if frozen
+    public void NewGame()
+    {
+        Time.timeScale = 1f;
+        SaveManager.DeleteSave();
+        PlayerPrefs.SetInt("ShouldLoadSave", 0);
+        SceneManager.LoadScene("Environment FINAL");
+    }
+
+    //loads game + activate time if frozen
     public void LoadGame()
     {
         Time.timeScale = 1f;
@@ -19,6 +24,7 @@ public void NewGame()
         SceneManager.LoadScene("Environment FINAL");
     }
 
+    //exits game
     public void ExitGame()
     {
         Application.Quit();

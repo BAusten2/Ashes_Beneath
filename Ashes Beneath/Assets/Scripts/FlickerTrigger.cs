@@ -1,3 +1,5 @@
+//Jasmit Gosal 21137879
+
 using UnityEngine;
 
 public class FlickerTrigger : MonoBehaviour
@@ -8,6 +10,7 @@ public class FlickerTrigger : MonoBehaviour
     public float originalMinDelay = 2.25f;
     public float originalMaxDelay = 2.75f;
 
+    //activate when player steps
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -17,6 +20,7 @@ public class FlickerTrigger : MonoBehaviour
         }
     }
 
+    //deactive when player steps off
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))

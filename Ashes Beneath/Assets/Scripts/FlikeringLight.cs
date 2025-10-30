@@ -1,3 +1,5 @@
+//Jasmit Gosal 21137879
+
 using UnityEngine;
 using System.Collections;
 
@@ -13,6 +15,7 @@ public class FlickeringLight : MonoBehaviour
 
     private Coroutine flickerRoutine;
 
+    //start light flicker
     void Start()
     {
         lightSource = GetComponent<Light>();
@@ -23,6 +26,7 @@ public class FlickeringLight : MonoBehaviour
         flickerRoutine = StartCoroutine(Flicker());
     }
 
+    //play audio sorce synced with flicker
     IEnumerator Flicker()
     {
         while (true)
@@ -39,6 +43,7 @@ public class FlickeringLight : MonoBehaviour
         }
     }
 
+    //set flicker speed
     public void SetFlickerSpeed(float newMin, float newMax)
     {
         minDelay = newMin;

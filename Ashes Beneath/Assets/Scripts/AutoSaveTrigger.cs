@@ -1,3 +1,5 @@
+//Jasmit Gosal 21137879
+
 using UnityEngine;
 
 public class AutoSaveTrigger : MonoBehaviour
@@ -12,6 +14,7 @@ public class AutoSaveTrigger : MonoBehaviour
             SaveManager.SavePlayer(playerPos);
             Debug.Log("Autosave triggered");
 
+            //show saving icon
             SavingFeedback feedback = FindObjectOfType<SavingFeedback>();
             if (feedback != null)
             {

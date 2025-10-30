@@ -1,3 +1,5 @@
+//Jasmit Gosal 21137879
+
 using System.IO;
 using UnityEngine;
 
@@ -11,6 +13,7 @@ public static class SaveManager
 {
     private static string savePath => Application.persistentDataPath + "/save.json";
 
+    //save player location
     public static void SavePlayer(Vector3 position)
     {
         SaveData data = new SaveData();
@@ -20,6 +23,7 @@ public static class SaveManager
         Debug.Log("Game saved to: " + savePath);
     }
 
+    //load player position
     public static Vector3? LoadPlayer()
     {
         if (File.Exists(savePath))
