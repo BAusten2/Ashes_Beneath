@@ -1,1 +1,1 @@
-public enum KeyColor { Green, Blue, Red }
+public enum KeyColor { Green, Blue, Red, Black }
